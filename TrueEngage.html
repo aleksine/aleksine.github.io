@@ -10,6 +10,15 @@
 <h1>Genesys Cloud Messaging Test</h1>
 <p>Hello World!</p>
 
+<script>
+document.addEventListener('trueengage:sdk_initialized', () => {
+	// Adding a custom attribute after the SDK is initialized
+	window.trueengage.addCustomAttribute("key", "value");
+});
+</script>
+<script async src="https://asset.trueengage.com/accounts/51753e29-150d-4c5f-8044-fdaad505f0b0/widget.js">
+</script>
+	
 <!-- TrueEngage -->
 <script async src="https://asset.trueengage.com/accounts/51753e29-150d-4c5f-8044-fdaad505f0b0/widget.js">
 document.addEventListener('trueengage:sdk_initialized', () => {
@@ -22,3 +31,4 @@ document.addEventListener('trueengage:sdk_initialized', () => {
 </body>
 
 </html>
+
