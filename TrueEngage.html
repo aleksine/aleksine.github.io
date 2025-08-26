@@ -11,6 +11,14 @@
 <p>Hello World!</p>
 
 <!-- TrueEngage -->
-<script async src="https://asset.trueengage.com/accounts/51753e29-150d-4c5f-8044-fdaad505f0b0/widget.js"></script>
+<script async src="https://asset.trueengage.com/accounts/51753e29-150d-4c5f-8044-fdaad505f0b0/widget.js">
+document.addEventListener('trueengage:sdk_initialized', () => {
+	// Adding a custom attribute after the SDK is initialized
+	window.trueengage.addCustomAttribute("key", "value");
+});
+
+  
+</script>
 </body>
+
 </html>
