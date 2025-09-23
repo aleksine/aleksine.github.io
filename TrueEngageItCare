@@ -5,7 +5,7 @@
 <body>
 
 <h1 style="color:#00923F;">TrueEngage chat test page</h1>
-<h2 style="color:#EF2634;">Italy - Care</h2>
+<h2 style="color:#EF2634;">Italy - Care </h2>
 
 <script>
   document.addEventListener('trueengage:sdk_initialized', () => {
