@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TrueEngage-IT-D2B</title>
+<body>
+
+<h1 style="color:#00923F;">TrueEngage chat test page</h1>
+<h2 style="color:#EF2634;">Italy - D2C</h2>
+
+<script>
+  document.addEventListener('trueengage:sdk_initialized', () => {
+	// Adding a custom attribute after the SDK is initialized
+	  window.trueengage.addCustomAttribute("TestAttribute", "One-Two-Tree");
+  
+  });
+</script>
+	
+<script async src="https://asset.trueengage.com/accounts/51753e29-150d-4c5f-8044-fdaad505f0b0/widget.js"></script>
+  
+</script>
+</body>
+</html>
