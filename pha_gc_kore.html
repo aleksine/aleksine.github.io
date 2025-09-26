@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {background-color: #0A2457;}
+      h1   {color: white; text-align: center; font-family: Geneva, sans-serif;}
+      p    {color: #1959d6;}
+	  .whitebox {background-color: white; }
+	  
+    </style>
+	<title>Versuni integration with Kore.ai</title>
+	<script type="text/javascript" charset="utf-8">
+	  (function (g, e, n, es, ys) {
+		g['_genesysJs'] = e;
+		g[e] = g[e] || function () {
+		  (g[e].q = g[e].q || []).push(arguments)
+		};
+		g[e].t = 1 * new Date();
+		g[e].c = es;
+		ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+	  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+		environment: 'prod-euc1',
+		deploymentId: 'd3147b6f-316e-4de4-b2ea-9511019c532f'
+	  });
+	  
+
+	  
+	</script>
+
+	</head>
+	<body>
+		<script>
+
+Genesys("command", "Database.set", {messaging: {customAttributes: {"Queue": "Test_Generic"}}})
+Genesys("subscribe", "Launcher.ready", function(){});
+Genesys("subscribe", "Launcher.visible", function(){});
+
+Genesys("command", "Launcher.show",
+{},
+    function() {
+        /*fulfilled callback*/
+		console.log("OK")
+    },
+    function() {
+        /*rejected callback*/
+		console.log("Rejected")		
+    }
+);
+
+</script>
+
+<script>
+   function changeQueue() {
+      var queueSelected = document.getElementById("queueSelector").value;
+      Genesys("command", "Database.set", {messaging: {customAttributes: {"Queue": queueSelected}}})	  
+   }
+</script>
+
+		<h1>Genesys Cloud and Kore.ai</h1>
+
+		
+		<div class="whitebox">
+			<div style="margin-left: 20px;">
+			<br>
+			<label for="queueSelector">Choose an ACD Queue:</label>
+		    <select name="queueSelector" id="queueSelector" onchange="changeQueue()" style="width: 300px; background-color: #FBBC05;">
+			   <option value="Test_Generic">Test_Generic</option>
+			   <option value="Test_Generic_2">Test_Generic_2</option>
+			   <option value="Test_Kore_Queue1">Test_Kore_Queue1</option>
+		  </select>
+		  <br><br>
+		</div>  
+		</div>
+	</body>
+</html>
