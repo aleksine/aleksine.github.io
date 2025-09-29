@@ -56,15 +56,15 @@
 		<script>
 			function changeQueue() {
 				var queueSelected = document.getElementById("queueSelector").value;
-				Genesys("command", "Database.set", {messaging: {customAttributes: {"Queue": queueSelected}}})	  
+				Genesys("command", "Database.update", {messaging: {customAttributes: {"Queue": queueSelected}}})	  
 			}
 			function changeName() {
 				var nameEntered = document.getElementById("userName").value;
-				/*Genesys("command", "Database.set", {messaging: {customAttributes: {"Widget_Name": nameEntered}}})*/
+				Genesys("command", "Database.update", {messaging: {customAttributes: {"Widget_Name": nameEntered}}})*/
 			}
 			function changeEmail() {
 				var emailEntered = document.getElementById("userEmail").value;
-				/*Genesys("command", "Database.set", {messaging: {customAttributes: {"Widget_Email": emailEntered}}})*/
+				/*Genesys("command", "Database.update", {messaging: {customAttributes: {"Widget_Email": emailEntered}}})*/
 			}
 		</script>
 
@@ -107,4 +107,5 @@
     </div>		
 	</body>
 </html>
+
 
