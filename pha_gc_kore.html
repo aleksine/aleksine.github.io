@@ -1,6 +1,11 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesys Cloud and Kore.ai</title>
+	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {background-color: #0A2457;}
       h1   {color: white; text-align: center; font-family: Geneva, sans-serif;}
@@ -8,7 +13,7 @@
 	  .whitebox {background-color: white; }
 	  
     </style>
-	<title>Versuni integration with Kore.ai</title>
+
 	<script type="text/javascript" charset="utf-8">
 	  (function (g, e, n, es, ys) {
 		g['_genesysJs'] = e;
@@ -30,47 +35,75 @@
 	</head>
 	<body>
 		<script>
+			Genesys("command", "Database.set", {messaging: {customAttributes: {
+			   "Queue": "Test_Kore_Queue1",
+			   "Widget_Email":"",
+			   "Widget_Name":""
+			}}})
+			Genesys("subscribe", "Launcher.ready", function(){});
+			Genesys("subscribe", "Launcher.visible", function(){});
+			Genesys("command", "Launcher.show", {},
+				function() {
+					/*fulfilled callback*/
+					console.log("OK")
+				},
+				function() {
+					/*rejected callback*/
+					console.log("Rejected")		
+				}
+			);
+		</script>
+		<script>
+			function changeQueue() {
+				var queueSelected = document.getElementById("queueSelector").value;
+				Genesys("command", "Database.set", {messaging: {customAttributes: {"Queue": queueSelected}}})	  
+			}
+			function changeName() {
+				var nameEntered = document.getElementById("userName").value;
+				Genesys("command", "Database.set", {messaging: {customAttributes: {"Widget_Name": nameEntered}}})
+			}
+			function changeEmail() {
+				var emailEntered = document.getElementById("userEmail").value;
+				Genesys("command", "Database.set", {messaging: {customAttributes: {"Widget_Email": emailEntered}}})
+			}
+		</script>
 
-Genesys("command", "Database.set", {messaging: {customAttributes: {"Queue": "Test_Generic"}}})
-Genesys("subscribe", "Launcher.ready", function(){});
-Genesys("subscribe", "Launcher.visible", function(){});
-
-Genesys("command", "Launcher.show",
-{},
-    function() {
-        /*fulfilled callback*/
-		console.log("OK")
-    },
-    function() {
-        /*rejected callback*/
-		console.log("Rejected")		
-    }
-);
-
-</script>
-
-<script>
-   function changeQueue() {
-      var queueSelected = document.getElementById("queueSelector").value;
-      Genesys("command", "Database.set", {messaging: {customAttributes: {"Queue": queueSelected}}})	  
-   }
-</script>
-
-		<h1>Genesys Cloud and Kore.ai</h1>
-
-		
-		<div class="whitebox">
-			<div style="margin-left: 20px;">
-			<br>
-			<label for="queueSelector">Choose an ACD Queue:</label>
+	
+   <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card mt-5 shadow">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-4">
+                            <i class="bi bi-arrow-right-circle text-primary" style="font-size: 4rem;"></i>
+                        </div>
+                        <h1 class="card-title text-primary mb-4">Genesys Cloud and Kore.ai</h1>
+                        <div class="alert alert-info mb-4">
+ 			<label for="queueSelector">Choose ACD Queue:</label>
 		    <select name="queueSelector" id="queueSelector" onchange="changeQueue()" style="width: 300px; background-color: #FFFFFF;">
+			   <option value="Test_Kore_Queue1">Test_Kore_Queue1</option>
 			   <option value="Test_Generic">Test_Generic</option>
 			   <option value="Test_Generic_2">Test_Generic_2</option>
-			   <option value="Test_Kore_Queue1">Test_Kore_Queue1</option>
-		  </select>
-		  <br><br>
-		</div>  
-		</div>
-	</body>
 
+			</select>
+			<br><br>
+			<label for="userName">Enter your name:</label>
+			<input type="text" id="userName" name="userName" 
+				placeholder="Enter your name" onblur="changeName()"
+				style="width: 300px; background-color: #FFFFFF;">
+			<br><br>
+			<label for="userEmail">Enter your email:</label>
+			<input type="email" id="userEmail" name="userEmail" 
+				placeholder="john.doe@acme.com" onblur="changeEmail()"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+				style="width: 300px; background-color: #FFFFFF;">
+		  
+		  <br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>		
+	</body>
 </html>
