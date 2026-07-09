@@ -1,0 +1,82 @@
+ <!DOCTYPE html>
+<html lang="en">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+		body {background-color: #0A2457;}
+    </style>	
+	
+	<title>WhatsApp in the Chat</title>
+<body>
+
+ 
+
+
+  <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card mt-5 shadow">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-4">
+                            <i class="bi bi-arrow-right-circle text-primary" style="font-size: 4rem;"></i>
+                        </div>
+                        <h1 class="card-title text-primary mb-4">Test page</h1>
+						<p class="card-text lead mb-4">
+                            WhatsApp in the <strong>Chat</strong> Widget
+                        </p>	
+						<p>WhatsApp phone number is <span id="phone1">Unknown</span></p>
+ 
+						
+                        <div class="alert alert-info mb-4">
+                           <h5 class="alert-heading"><span id="phone">Unknown</span></</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>			
+
+	<script>
+        // 1. Get the query string from the current URL (?user=Alex&id=101)
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var waPhone = urlParams.get('phone');
+        if (waPhone) {
+            document.getElementById('phone').textContent = waPhone;
+        }
+    </script>
+
+	<script type="text/javascript" charset="utf-8">
+	  (function (g, e, n, es, ys) {
+		g['_genesysJs'] = e;
+		g[e] = g[e] || function () {
+		  (g[e].q = g[e].q || []).push(arguments)
+		};
+		g[e].t = 1 * new Date();
+		g[e].c = es;
+		ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+	  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+		environment: 'prod-euc1',
+		deploymentId: '1287ce94-721e-4a37-8532-0a6ddb3af044'
+	  });
+	  
+		Genesys("command", "Database.set", {
+		  messaging: { customAttributes: {
+			waTargetAddress: waPhone ? waPhone : "Unknown"
+		  }}});
+	 
+     if (waPhone) {
+            document.getElementById('phone1').textContent = waPhone;
+        }	  
+	</script>
+
+
+</body>
+</html>
+
+
+
+
