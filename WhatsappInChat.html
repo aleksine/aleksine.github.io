@@ -27,10 +27,13 @@
 						<p class="card-text lead mb-4">
                             WhatsApp in the <strong>Chat</strong> Widget
                         </p>	
-						<p>WhatsApp phone number is <span id="phone1">Unknown</span></p>
- 
+						<p style="align-self: left;">Usage: </p>
+						<p style="font-size: 75%;">WhatsappInChat.html?phone=&lt;Philips WhatsApp number&gt;</p>
+						<p style="font-size: 75%;">For +1234 use WhatsappInChat.html?phone=2B%1234</p>						
+ 						<p style="font-size: 75%;">For es_test use WhatsappInChat.html?phone=es_test</p>                      
+						<div class="alert alert-info mb-4">
 						
-                        <div class="alert alert-info mb-4">
+							<h5 class="alert-heading">WhatsApp number</span></</h5>
                            <h5 class="alert-heading"><span id="phone">Unknown</span></</h5>
                         </div>
                     </div>
@@ -67,10 +70,6 @@
 		  messaging: { customAttributes: {
 			waTargetAddress: waPhone ? waPhone : "Unknown"
 		  }}});
-	 
-     if (waPhone) {
-            document.getElementById('phone1').textContent = waPhone;
-        }	  
 	</script>
 
 
