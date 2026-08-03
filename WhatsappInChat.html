@@ -42,11 +42,20 @@
         </div>
     </div>			
 
-	<script>
-        // 1. Get the query string from the current URL (?user=Alex&id=101)
+	<script>    
+		// Get the query string from the current URL
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        var waPhone = urlParams.get('phone');
+		let myEnv = urlParams.get('environment')
+		let myDeplID = urlParams.get('deployment')		
+        let waPhone = urlParams.get('phone');
+
+		if (myEnv == null) {
+    		myEnv = 'prod-euc1'
+		}
+		if (myDeplID == null) {
+    		myDeplID = '1287ce94-721e-4a37-8532-0a6ddb3af044'
+		}		
         if (waPhone) {
             document.getElementById('phone').textContent = waPhone;
         }
@@ -62,8 +71,8 @@
 		g[e].c = es;
 		ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
 	  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-		environment: 'prod-euc1',
-		deploymentId: '1287ce94-721e-4a37-8532-0a6ddb3af044'
+		environment: myEnv,
+		deploymentId: myDeplID
 	  });
 	  
 		Genesys("command", "Database.set", {
